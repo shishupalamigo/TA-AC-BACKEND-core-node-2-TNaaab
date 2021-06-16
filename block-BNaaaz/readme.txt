@@ -1,0 +1,1 @@
+Hello World! Welocme to the EventEmitter module of NodeJS.
