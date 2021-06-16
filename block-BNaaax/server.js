@@ -12,7 +12,7 @@ server.listen(3000, () => {
 });
 
 console.log(__dirname);
-console.log('./index.md');
+console.log(__filename);
 
 const serverPath =  path.join(__dirname, './server.js');
 console.log(serverPath); 
