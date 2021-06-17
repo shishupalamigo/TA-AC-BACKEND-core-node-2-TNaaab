@@ -8,12 +8,10 @@ function handleRequest (req, res) {
         store += chunk;
     });
     req.on('end', () => {
-        console.log(store);
-        return store;
+        res.setHeader('Content-Type', 'text/plain');
+        res.write(store);
+        res.end();
     });
-    res.setHeader('Content-Type', 'text/plain');
-    res.write(store);
-    res.end();
 }
 
 server.listen(3456, () => {
