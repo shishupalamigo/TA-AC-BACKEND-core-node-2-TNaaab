@@ -1,18 +1,6 @@
 const http = require('http');
 const qs = require('querystring');
-const path =  require('path');
 
-const serverJSPath = __filename;
-console.log(serverJSPath);
-
-const appJSPath = `${__dirname}/app.js`;
-console.log(appJSPath);
-
-const indexPath = `${__dirname}/index.html`;
-console.log(indexPath);
-
-const indexHtmlPath = path.join(__dirname, 'index.html');
-console.log(indexHtmlPath);
 
 const server = http.createServer(handleRequest);
 
@@ -43,7 +31,7 @@ const server2  = http.createServer(handleRequest2);
 function handleRequest2 (req, res) {
   let contentType = req.headers['content-type'];
   let store = '';
-  req.on('data', (chunk) => {
+   req.on('data', (chunk) => {
       store += chunk;
   });
   req.on('end', () => {
