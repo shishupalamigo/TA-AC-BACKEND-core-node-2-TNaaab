@@ -6,18 +6,20 @@ const server = http.createServer(handleRequest);
 function handleRequest (req, res) {
     let dataType = req.headers['content-type'];
     let store = '';
-    req.on('data', (chunk) => {
+    req.on('data', (chunk) => { 
         store += chunk;
     });
     req.on('end', () => {
-        if (dataType === 'application/json') {
-            let parsedData = JSON.parse(store);
+        if (req.method === 'POST' && req.url === '/json') {
+            res.setHeader('Content-Type', 'application/json');
             res.end(store);
         }
-        if (dataType === 'application/x-www-form-urlencoded'){
+        if (req.method === 'POST' && req.url === '/form') {
+            res.setHeader('Content-Type', 'application/json');
             let parsedData = qs.parse(store);
             res.end(JSON.stringify(parsedData));
         }
+
     });
 }
 
