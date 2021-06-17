@@ -1,11 +1,12 @@
 const http = require('http');
 const fs = require('fs');
 const qs = require('querystring');
+const path = require('path');
 
-const indexJSRelPath = './clients/index.js';
+const indexJSRelPath = '../clients/index.js';
 console.log(indexJSRelPath);
 
-const indexJSAbstPath = `${__dirname}/clients/index.js`;
+const indexJSAbstPath = path.join(__dirname, '..', 'clients/index.js');
 console.log(indexJSAbstPath);
 
 const server = http.createServer(handleRequest);
@@ -23,10 +24,6 @@ function handleRequest(req, res) {
     })
 
     if (req.method === 'POST' && req.url === '/form') {
-      if (req.url.split('.').pop() === 'css') {
-        res.setHeader('Content-Type', 'text/css');
-        fs.ReadStream(`./${req.url}`).pipe(res); 
-      }
       let formData = qs.parse(store);
       res.setHeader('Content-type', 'text/html');
       res.end(
